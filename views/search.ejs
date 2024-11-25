@@ -6,9 +6,8 @@
   
   <div class="container">
     <center>
-  <a href="/create" style="text-decoration: none; font-weight: bold; font-size: 20px;">Create a new request</a>
+  <a href="/create" style="text-decoration: none; font-weight: bold; font-size: 20px; margin-left: -50px;margin-right: 50px;">Create a new request</a>
 	<a href="/map" style="text-decoration: none; font-weight: bold; font-size: 20px;">View Map</a>
-  <a href="/logout"style="text-decoration: none; font-weight: bold; font-size: 20px;">Logout</a>
   </center>
   <% allRequest.forEach(results => {%>
     <a href="/details?postcode=<%=results.postcode%>" style="text-decoration: none;">
