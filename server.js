@@ -200,7 +200,7 @@ app.post('/create', CheckId, async (req, res) => {
         if (!checkcode) {
             console.log(req.fields.locx, req.fields.locy);
             let createObj = new new_request({
-                userid: req.fields.name,
+                userid: req.fields.username,
                 postcode: req.fields.postcode,
                 date: req.fields.date,
                 name: req.fields.name,
