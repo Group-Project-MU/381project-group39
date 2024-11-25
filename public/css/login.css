@@ -1,0 +1,85 @@
+body{
+    background-color:rgba(0, 103, 255, 0.7);
+    font-family: arial;
+}
+
+.loginHeader{
+    text-align: center;
+    margin-bottom: 60px;
+}
+.loginHeader h1{
+    font-size: 100px;
+    color: black;
+    padding: 0px;
+    margin: 0px;
+}
+.loginHeader p{
+    color: black;
+    font-size: 50px;
+    margin: 0px;
+    display: inline-block;
+}
+
+.loginHeader p:after{
+    content: '';
+    display: block;
+    height: 5px;
+    background: white;
+    margin: 0 auto;
+}
+
+.loginBody form{
+    margin: 0 auto;
+    width: 450px;
+    background: rgba(255, 255, 255,0.5);
+    padding: 50px;
+    border: 2px solid #fff;
+    border-radius: 8px;
+}
+
+.loginInputsContainer{
+    margin-top: 20px;
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.loginInputsContainer input{
+    height: 25px;
+    width: 100%;
+    border: 2px solid gray;
+    font-size: 20px;
+    padding: 5px;
+}
+
+.loginButtonContainer{
+    margin-top: 40px;
+    text-align: center;
+}
+
+.loginButtonContainer button{
+    font-size: 20px;
+    padding: 10px 40px;
+    border: none;
+}
+
+.registerInputContainer input{
+    height: 50px;
+    width: 100%;
+ 	  margin-top: 50px;
+    border: 2px solid gray;
+    font-size: 20px;
+    padding: 5px;
+  	font-weight: bold;
+  	border-radius: 5px;
+}
+
+.ErrorContainer{
+    margin-top: 10px;
+    /*background-color: black;*/
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+
+}
+

@@ -1,0 +1,46 @@
+<html>
+<title><%=username%></title>
+<link rel="stylesheet" type="text/css" href="css/profile.css">
+
+<body text="WhiteSmoke" bgcolor="LightSeaGreen">
+<center>
+    <h1>Login Success!<h1>
+            <h2><%=message%><%=username%></h2>
+  </center>          
+  <div class="buttoncontainer2">
+              <a href="/create" class="button2box">Create a new request</a>
+              <a href="/map" class="button2box">View Map</a>
+              <a href="/logout" class="button2box">Logout</a>
+  </div>
+
+            <div class="container">
+                <% allRequest.forEach(results => {%>
+                <% if (results.userid === username) { %>
+                <div class="innercontainer" name="<%= results.name %>" postcode="<%= results.postcode %>">
+                    <div class="imgcontainer">
+                        <% if (!results.file) {%>
+                        <img src="img/UnknowUser.jpeg" style="max-width: 150px;max-height: 150px;" name="<%= results.postcode %>">
+                        <p>
+                            <% } else {%>
+                            <img src="data:image/png;base64,<%=results.file%>" style="max-width: 150px; max-height: 150px;" name="<%= results.postcode %>">
+                        <p>
+                            <% } %>
+                    </div>
+                    <p>
+                    <div class="infobox">
+                        <p>
+                        <div class="info">Name: <%= results.name %></div>
+                        <div class="info">Age: <%= results.age %></div>
+                        <div class="info">Missing date: <%= results.date %></div>
+                        <div class="buttoncontainer"><a href="/delete?postcode=<%=results.postcode%>" style="text-decoration: none;"><input type="submit" value="Delete"></a>
+                            <a href="/edit?postcode=<%=results.postcode%>" style="text-decoration: none;"><input type="submit" value="Edit"></a>
+                            <a href="/details?postcode=<%=results.postcode%>" style="text-decoration: none;"><input type="submit" value="Detail"></a>
+                        </div>
+                    </div>
+                </div>
+                <% }}) %>
+            </div>
+
+</body>
+
+</html>

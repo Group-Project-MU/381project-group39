@@ -1,0 +1,135 @@
+<html>
+  <head>
+      <!---Reference: https://leafletjs.com/ --->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CreateRequest</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
+    />
+    <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="css/request.css" />
+  </head>
+<body>
+ <div class="container">
+ <form action="/create" method="POST" enctype="multipart/form-data">
+ <div class="ErrorContainer">
+  <% if (error) { %>
+    <%= error %>
+  <% } %>
+  </div>
+  <div class="InputsContainer">
+  Date:<br><input name="date" id="date" type="text" readonly>
+  </div>
+  <div class="InputsContainer">
+  Username:<br> <input name="username" id="username" type="text" readonly>
+  </div>
+  <div class="InputsContainer">
+  PostCode:<br> <input name="postcode" id="postcode" type="text" placeholder="Please enter aleast 4 digit post code" minlength="4">
+  </div>
+  <div class="InputsContainer">
+  Name:<br> <input name="name" id="name" type="text" pattern="[a-zA-Z]+" placeholder="Name of the missing person"  minlength="3">
+  </div>
+  <div class="InputsContainer">
+  Age:<br> <input name="age" id="age" type="number" minlength="1" min="3" max="120" placeholder="Range: 3 - 120">
+  </div>
+  <div class="InputsContainer">
+  Contact Number:<br> <input name="tele" id="tele" type="tele" placeholder="12345678" pattern="[0-9]*" minlength="8">
+   </div>
+  <div class="InputsContainer">
+  Upload a photo:<br><input type="file" name="uploadf">
+   </div>
+   <div class="InputsContainer">
+  <input type="submit" id="subbtn" value="post" disabled>
+    </div>
+    <div class="container2">
+        <div class="InputsContainer">
+  Location(lat): <input name="locx" id="locx" type="string" placeholder="Select from map"style="  float: right;"><!---readonly--->
+    </div>
+  <div class="InputsContainer">
+  Location(lng): <input name="locy" id="locy" type="string" placeholder="Select from map" style="  float: right;"><!---readonly--->
+  </div>
+    <div class="InputsContainer">
+  Comment:<br> <textarea name="com" type="string" placeholder="You may leave a comment" style="height: 120px;width:100%;"></textarea>
+  </div>
+  </div>
+  </form>
+    <div class="mapcontainer">
+  <div id="map"></div>
+    </div>
+  </div>
+  </div>
+  <center>
+	<a href="/map">View Map</a>
+  <a href="/logout">Logout</a>
+  </center>
+    <script>
+        // config map
+        let config = {
+          minZoom: 7,
+          maxZoom: 18,
+        };
+        // magnification the map 
+        const zoom = 18;
+        // co-ordinates
+        const lat = 22.319289;
+        const lng = 114.16938;
+        // calling map
+        const map = L.map("map", config).setView([lat, lng], zoom);
+
+        L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          attribution:
+            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        }).addTo(map);
+        
+        //auto fill location
+        function onMapClick(event) {
+            const point = L.popup();
+            point.setLatLng(event.latlng).setContent("Auto copied the coordinate: " + event.latlng.lat.toString() + "," + event.latlng.lng.toString()).openOn(map);
+            const coor = event.latlng.lat + "," + event.latlng.lng
+            navigator.clipboard.writeText(coor);
+            document.getElementById("locx").value = event.latlng.lat.toString();
+            document.getElementById("locy").value = event.latlng.lng.toString();
+            checknull();
+        }
+       map.on('click', onMapClick);
+       
+       //auto fill
+       const Today = new Date();
+       document.getElementById("date").value = Today.toString();
+       document.getElementById("tele").value = <%- JSON.stringify(tel) %>;
+       document.getElementById("username").value = <%- JSON.stringify(username) %>;
+       
+       //Get values
+       const Code = document.getElementById("postcode");
+       const Name = document.getElementById("name");
+       const Age = document.getElementById("age");
+       const Tele = document.getElementById("tele");
+       const Locx = document.getElementById("locx");
+       const Locy = document.getElementById("locy");
+       const submitbtn = document.getElementById("subbtn");
+       
+      //Check fields and enable btn
+       function checknull() {
+       //Set conditions, front end checking
+       const cdt1 = Name.value !== "" && Code.value.length >= 4;
+       const cdt2 = Age.value.length >= 1 && Tele.value.length >= 1;
+       const cdt3 = Locx.value !== "" && Locy.value !== "";
+        if ( cdt1 && cdt2 && cdt3 ) {
+          submitbtn.removeAttribute("disabled");
+        } else {
+            submitbtn.setAttribute("disabled", "disabled");
+          }
+        }
+        
+       Code.addEventListener('input',checknull);
+       Name.addEventListener('input',checknull);
+       Age.addEventListener('input',checknull);
+       Tele.addEventListener('input',checknull);
+       Locx.addEventListener('input',checknull);
+       Locy.addEventListener('input',checknull);
+        
+        </script>
+</body>
+</html>

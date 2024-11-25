@@ -1,0 +1,53 @@
+<html>
+<title> Search </title>
+<link rel="stylesheet" href="css/search.css" />
+<body>
+  <div class="searchbar">Search: <input type="text" id="search" placeholder="Search by name or postcode"></div>
+  
+  <div class="container">
+    <center>
+  <a href="/create" style="text-decoration: none; font-weight: bold; font-size: 20px;">Create a new request</a>
+	<a href="/map" style="text-decoration: none; font-weight: bold; font-size: 20px;">View Map</a>
+  <a href="/logout"style="text-decoration: none; font-weight: bold; font-size: 20px;">Logout</a>
+  </center>
+  <% allRequest.forEach(results => {%>
+    <a href="/details?postcode=<%=results.postcode%>" style="text-decoration: none;">
+    <div class="innercontainer" name="<%= results.name %>" postcode="<%= results.postcode %>">
+    <div class="imgcontainer">
+    <% if (!results.file) {%>
+      <img src="img/UnknowUser.jpeg" style="max-width: 200px;"name="<%= results.postcode %>"><p>
+    <% } else {%>
+    <img src="data:image/png;base64,<%=results.file%>" style="max-width: 200px;"name="<%= results.postcode %>"><p>
+    <% } %>
+    </div>
+    <p>
+    <div class="infobox">
+    <p>
+    <div class="info">Name: <%= results.name %></div>
+    <div class="info">Age: <%= results.age %></div>
+    <div class="info">Missing date: <%= results.date %></div>
+    <div class="info">Location: <%= results.location %></div>
+    </div>
+    </div>
+  <% }) %>
+  </div>
+    </a>
+ <script>
+    function searchByCode() {
+      const searchInput = document.getElementById('search').value.toLowerCase();
+      const innercontainer = document.querySelectorAll('.innercontainer');
+
+      innercontainer.forEach(container => {
+        const postcode = container.getAttribute('postcode');
+        const getName = container.getAttribute('name').toLowerCase();
+        if (postcode.includes(searchInput) || getName.includes(searchInput)) {
+          container.style.display = ""; 
+        } else {
+          container.style.display = "none";
+        }
+      })
+    }
+    document.getElementById('search').addEventListener('input', searchByCode);
+  </script>
+</body>
+</html>

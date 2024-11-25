@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login</title>
+
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="loginHeader">
+            <h1>MU</h1>
+            <p>Group Project</p>
+        </div>
+        <div class="loginBody">
+            <form action="/login" method="post">
+                <div class="loginInputsContainer">
+                    <div class="ErrorContainer">
+                        <!---show error--->
+                        <% if (error) { %>
+                        <%= error%>
+                        <% } %>
+                    </div>
+                    <label for="">Username</label>
+                    <input placeholder="username" type="text" name="name">
+                </div>
+                <div class="loginInputsContainer">
+                    <label for="">Password</label>
+                    <input placeholder="password" type="password" name="password">
+                </div>
+                <div class="loginButtonContainer">
+                    <button type="submit" value="Login">Login</button>
+            </form>
+        </div>
+        </form>
+    </div>
+    </div>
+</body>
+
+</html>

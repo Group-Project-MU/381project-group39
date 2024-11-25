@@ -1,0 +1,63 @@
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="css/login.css"/>
+<body>
+  <div class="container">
+  <div class="loginHeader">
+    <h1>MU</h1>
+    <p>Group Project</p>
+   </div>
+   <div class="loginBody">
+<form action="/register" method="POST">
+  <div class="ErrorContainer">
+  <!---Show error--->
+  <% if (error) { %>
+    <%= error%>
+  <% } %>
+  </div>
+  <div class="loginInputsContainer">
+   Username   <input type="text" name="username" id="field" placeholder="Your Username">
+    </div>
+    <div class="loginInputsContainer">
+	 Password   <input type="password" id="pwd1" name="password1" placeholder="Your Password">
+    </div>
+    <div class="loginInputsContainer">
+       Password   <input type="password" id="pwd2" name="password2" placeholder="Input your password again">
+     </div>
+     <div class="loginInputsContainer">
+        Email   <input type="email" name="email" id="email" placeholder="example@sample.com">
+      </div>
+    <div class="loginInputsContainer">
+       Phone Number   <input type="tel" name="pnum" id="pnum" placeholder="12345678" pattern="[0-9]{4}[0-9]{4}">
+      </div>
+    <div class="registerInputContainer">
+	<input type="submit" value="confirm" id="subbtn" disabled>
+    </div>
+</from>
+  </div>
+  </div>
+<script>
+  //Get values
+  const pwd1 = document.getElementById("pwd1");
+  const pwd2 = document.getElementById("pwd2");
+  const email = document.getElementById("email");
+  const pnum = document.getElementById("pnum");
+  const submitbtn = document.getElementById("subbtn");
+  
+  //Check fields, password and enable btn
+  function checkvalidate() {
+    const cdt1 = pwd1.value === pwd2.value && pwd1.value.length >= 8;
+    const cdt2 = email.value !== "" && pnum.value !== "";
+    if ( cdt1 && cdt2 ) {
+      submitbtn.removeAttribute("disabled");
+    } else {
+      submitbtn.setAttribute("disabled", "disabled");
+      }
+  }
+  email.addEventListener('input', checkvalidate);
+  pnum.addEventListener('input', checkvalidate);
+  pwd1.addEventListener('input', checkvalidate);
+  pwd2.addEventListener('input', checkvalidate);
+</script>
+</body>
+</html>

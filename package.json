@@ -1,0 +1,21 @@
+{
+	"name": "server",
+	"description": "Group-Project",
+	"author": "Group",
+	"version": "0.0.1",
+	"dependencies": {
+		"cookie-session": "^2.1.0",
+		"ejs": "^3.1.10",
+		"express": "^4.21.1",
+		"express-fileupload": "^1.5.1",
+		"express-formidable": "^1.2.0",
+		"file-upload": "^0.0.0",
+		"formidable": "^3.5.2",
+		"leaflet": "^1.9.4",
+		"mongoose": "^8.4.3"
+	},
+	"engine": "node >= 18.0.0",
+	"script": {
+		"start": "node server"
+	}
+}

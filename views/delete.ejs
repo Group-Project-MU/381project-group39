@@ -1,0 +1,51 @@
+<html>
+<title><%=info.name%></title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"></script>
+<link rel="stylesheet" type="text/css" href="css/detail.css">
+
+<body>
+    <div class="container">
+        <div class="innercontainer">
+            <div class="imgcontainer">
+                <% if (!info.file) {%>
+                <img src="img/UnknowUser.jpeg" style="max-width: 200px;">
+                <p>
+                    <% } else {%>
+                    <img src="data:image/png;base64,<%=info.file%>" style="max-width: 200px;">
+                <p>
+                    <% } %>
+            </div>
+            <div class="infobox">
+                <div class="info">Name: <%=info.name%></div>
+                <div class="info">Age: <%=info.age%></div>
+                <div class="info">Contact Number: <%=info.num%></div>
+                <div class="info">Missing Date: <%=info.date%></div>
+                <div class="infocom">Comment: <%=info.comment%></div>
+            </div>
+            <div class="info" style="margin-top: 5px; height: 170px;">Missing at:<div id="getName"></div>
+            </div>
+            <div class="info">
+                <form action="/delete" method="POST">
+                    <input name="postcode" id="postcode" type="text" value="<%= info.postcode%>" hidden readonly>
+                    <button type="submit">Delete</button><button type="submit"><a href="/" style="text-decoration: none;">back</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        async function reversecode(lat, lng) {
+            const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`;
+            const response = await fetch(url);
+            const streetname = await response.json();
+            //document.getElementById('getName').textContent = JSON.stringify(streetname);
+            document.getElementById('getName').textContent = JSON.stringify(streetname.display_name);
+        }
+        //test
+        //reversecode(22.318071374752268,114.17000081946598);
+        reversecode( < %= info.location % > );
+    </script>
+</body>
+
+</html>
