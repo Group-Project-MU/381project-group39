@@ -164,7 +164,7 @@ app.post('/login', async (req, res) => {
 });
 
 //app.get('/create', CheckVerify, async (req, res) => {
-app.get('/create', async (req, res) => {
+app.get('/create', CheckId, async (req, res) => {
     try {
         await mongoose.connect(uri);
         const user = await new_account.findOne({
@@ -191,7 +191,7 @@ app.get('/create', async (req, res) => {
 });
 
 //app.post('/create', CheckVerify, async (req, res) => {
-app.post('/create', async (req, res) => {
+app.post('/create', CheckId, async (req, res) => {
     try {
         await mongoose.connect(uri);
         const checkcode = await new_request.findOne({
