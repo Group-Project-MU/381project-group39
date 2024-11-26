@@ -460,6 +460,7 @@ app.post('/api/postcode/:code', async (req, res) => {
                                     name: req.fields.name,
                                     age: req.fields.age,
                                     num: req.fields.num,
+                                    comment: req.fields.com,
                                     location: [req.fields.lat, req.fields.lng]
                                     }
                         const quest = new new_request(newrequest);
