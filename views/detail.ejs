@@ -31,11 +31,11 @@
     <form action="/details" method="POST">
     <div class="updatecontainer">Location(lat):<input placeholder="Select from map" name="locx" id="locx" type="text"></div>
     <div class="updatecontainer">Location(lng):<input placeholder="Select from map" name="locy" id="locy" type="text"></div>
-    <div class="updatecontainer">Radius:<input placeholder="0 for single point" name="rad" id="rad" type="text"></div>
+    <div class="updatecontainer">Meters:<input placeholder="0 for single point" name="rad" id="rad" type="text"></div>
     <div class="updatecontainer">Message:<input placeholder="Leave a message(optional)" name="msg" id="msg" type="text"></div>
     <div class="updatecontainer"><input type="submit" id="subbtn" value="Post" disabled></div>
-        <input type="text" name="pcode" id="pcode" value="<%=info.postcode%>"  hidden readonly>
-        <input type="text" name="username" id="username" value="<%=user%>" hidden readonly>
+        <input type="text" name="pcode" id="pcode" value="<%=info.postcode%>"   hidden readonly>
+        <input type="text" name="username" id="username" value="<%=user%>"  hidden readonly>
     </form>
     </div>
     </div>
