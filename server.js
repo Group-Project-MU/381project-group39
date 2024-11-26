@@ -502,7 +502,7 @@ app.put('/api/postcode/:code', async (req, res) => {
                             name: req.fields.name,
                             age: req.fields.age,
                             num: req.fields.num,
-                            comment: req.fields.comment,
+                            comment: req.fields.com,
                             location: [req.fields.lat, req.fields.lng]
                             }, {new: true, runValidators: true});
             if ( update ) {
