@@ -117,7 +117,7 @@ app.post('/register', async (req, res) => {
         }
     } catch (err) {
         console.error('Unexcepted error occur!');
-        res.status(500).send('Internal Server error<a href="/">Back to home</a>').end();
+        res.status(500).send('Internal Server error');
     }
 });
 
@@ -159,12 +159,12 @@ app.post('/login', async (req, res) => {
         }
     } catch (err) {
         console.error('Unexcepted error occur!');
-        res.status(500).send('Internal Server error<a href="/">Back to home</a>').end();
+        res.status(500).send('Internal Server error').end();
     }
 });
 
 //app.get('/create', CheckVerify, async (req, res) => {
-app.get('/create', CheckId, async (req, res) => {
+app.get('/create', async (req, res) => {
     try {
         await mongoose.connect(uri);
         const user = await new_account.findOne({
@@ -191,7 +191,7 @@ app.get('/create', CheckId, async (req, res) => {
 });
 
 //app.post('/create', CheckVerify, async (req, res) => {
-app.post('/create', CheckId, async (req, res) => {
+app.post('/create', async (req, res) => {
     try {
         await mongoose.connect(uri);
         const checkcode = await new_request.findOne({
@@ -200,7 +200,7 @@ app.post('/create', CheckId, async (req, res) => {
         if (!checkcode) {
             console.log(req.fields.locx, req.fields.locy);
             let createObj = new new_request({
-                userid: req.fields.username,
+                userid: req.session.name || req.fields.name,
                 postcode: req.fields.postcode,
                 date: req.fields.date,
                 name: req.fields.name,
@@ -244,7 +244,7 @@ app.post('/create', CheckId, async (req, res) => {
         }
     } catch (err) {
         console.error(err);
-        res.status(500).send('Internal Server error<a href="/">Back to home</a>').end();
+        res.status(500).send('Internal Server error').end();
         S
     }
 });
@@ -301,7 +301,7 @@ app.post('/edit', CheckVerify, async (req, res) => {
                 res.status(200).send('Updated<a href="/">Back to home</a>').end();
                 console.log(req.fields.username, 'updated a request');
             } else {
-                res.status(500).send('Internal server error<a href="/">Back to home</a>').end();
+                res.status(500).send('Internal server error').end();
             }
         } else {
             res.render('edit', {
@@ -328,7 +328,7 @@ app.get('/details', CheckId, async (req, res) => {
             });
         }
     } catch (err) {
-        res.status(400).send("Bad request<a href="/">Back to home</a>").end();
+        res.status(400).send("Bad request").end();
     }
 });
 
@@ -355,13 +355,13 @@ app.post('/details', CheckId, async (req, res) => {
             });
             console.log(req.session.name + " left a message in request " + req.fields.pcode);
             console.log(update.message);
-            res.status(200).send('Posted a message<a href="/">Back to home</a>').end();
+            res.status(200).send('Posted a message').end();
         } else {
-            res.status(400).send("Only authorized user can use this function!<br><a href="/">Back to home</a>").end();
+            res.status(400).send("Only authorized user can use this function!").end();
         }
     } catch (err) {
         console.error(err);
-        res.status(500).send('Internal Server error<a href="/">Back to home</a>').end();
+        res.status(500).send('Internal Server error').end();
     }
 });
 
@@ -394,7 +394,7 @@ app.get('/delete', CheckVerify, async (req, res) => {
             });
         }
     } catch (err) {
-        res.status(400).send("Bad request<a href="/">Back to home</a>").end();
+        res.status(400).send("Bad request").end();
     }
 });
 
@@ -407,10 +407,10 @@ app.post('/delete', async (req, res) => {
         });
         if (deldoc) {
             console.log("Deleted a request");
-            res.status(200).send(`Deleted a request: ${req.fields.postcode}<br><a href="/">Back to home</a>`).end();
+            res.status(200).send(`Deleted a request: ${req.fields.postcode}`).end();
         }
     } catch (err) {
-        res.status(400).send("Bad request<a href="/">Back to home</a>").end();
+        res.status(400).send("Bad request").end();
     }
 });
 
@@ -460,7 +460,6 @@ app.post('/api/postcode/:code', async (req, res) => {
                                     name: req.fields.name,
                                     age: req.fields.age,
                                     num: req.fields.num,
-                                    comment: req.fields.com,
                                     location: [req.fields.lat, req.fields.lng]
                                     }
                         const quest = new new_request(newrequest);
@@ -519,7 +518,7 @@ app.delete('/api/postcode/:code', async (req, res) => {
             postcode: req.params.code
         });
         //check if exists
-        if (del) {
+        if (del.length > 0) {
             const results = await new_request.findOneAndDelete({
                 postcode: req.params.code
             });
