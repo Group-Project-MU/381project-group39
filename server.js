@@ -333,9 +333,11 @@ app.get('/details', CheckId, async (req, res) => {
                     user: "guest"
                     });
                 }
+        } else {
+            res.status(400).send("Bad request<a href="/">Back to home</a>").end();
         }
     } catch (err) {
-        res.status(400).send("Bad request<a href="/">Back to home</a>").end();
+        res.status(500).send("Internal Server Error!</a>").end();
     }
 });
 
