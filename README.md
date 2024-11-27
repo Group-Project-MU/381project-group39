@@ -128,4 +128,5 @@ curl -X DELETE https://381project-group39.azurewebsites.net/api/postcode/your_po
 Example:<br>
 curl -X DELETE https://381project-group39.azurewebsites.net/api/postcode/test123<p>
 <br>
-https://reqbin.com/curl
+
+https://github.com/Group-Project-MU/381project-group39
