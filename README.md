@@ -9,7 +9,7 @@ Wong Po Wan 13048414<br>
 ### Background
 When someone goes missing, we usually post the news to all major social media, which cause the information become scattered. So we design to create a central platform where information could be centralized.<p>
 ## Project file intro
-### server.js<br>
+### server.js
 1. User Authentication: The application provides secure user authentication, 
 including registration, login, and password recovery.
 2. CRUD & RESTful CRUD Operations: <br>
@@ -17,21 +17,22 @@ Create: User can create a request and leave a message.<br>
 Read: View the list of missing people and their details.<br>
 Update: Edit the request that the user created.<br>
 Delete: Remove the request that the person was found or created incorrectly.<p>
-### package.json<br>
+### package.json
 cookie-session (\^2.1.0),<br>
-ejs (\^3.1.10), express (\^4.21.1),<br>
+ejs (\^3.1.10),<br>
+express (\^4.21.1),<br>
 express-fileupload (\^1.5.1),<br>
 express-formidable (\^1.2.0),<br>
 formidable (\^3.5.2),<br> 
 leaflet (\^1.9.4),<br> 
 mongoose(\^8.4.3)<p>
-### public<br>
+### public
 *CSS folder:<br>
 Includes delete.css, detail.css, edit.css, login.css, profile.css,
 request.css, search.css and viewmap.css. <br>
 *Image folder:<br>
 Includes excalm.png, question.png and UnknowUser.jpeg.
-### views<br>
+### views
 Includes CreateRequest.ejs, delete.ejs, detail.ejs, login.ejs,
 map.ejs, profile.ejs, register.ejs and search.ejs.<br>
 Some of the ejs files provide some front-end checking, search function and 
@@ -41,11 +42,11 @@ on name and postcode to quickly find relevant information. *Postcode (which
 user created in request for quickly access to the details page without login)<br>
 2. Error notifications: The user will receive an error message if their accounts do 
 not exist, the password is incorrect or something else.<p>
-### models<br>
+### models
 Includes account.js and request.js.
 ## Cloud-based Server URL:
 ### https://381project-group39.azurewebsites.net/
-## Operation Guides:<br>
+## Operation Guides:
 ### Guest functions:
 1. Create request as guest. (check the username in create request page)
 2. View the map
@@ -72,7 +73,7 @@ cannot enjoy some of the services.<p>
    
 ### Search page:
 -Use the name or the postcode to search the request.<p>
-### Details page:<br>
+### Details page:
 -View the request details and can post a message.<br> 
 -Clicking on the symbol which shows on the map to display the message.<p>
 ### Profile:
@@ -92,12 +93,12 @@ cannot enjoy some of the services.<p>
 ### Delete:
 -Click the delete button to delete.<p>
 
-### CRUD operations<br>
+### CRUD operations:
 -Create: Details page, Signup page, and create request page.<br>
 -Read: The view map page, search and details page.<br>
 -Update: After logging in, a edit button will display in the profile page if the user has a request.<br>
 -Delete: After logging in, a delete button will display in the profile page if the user has a request.<br>
-### RESTful CRUD Services:<br>
+### RESTful CRUD Services:
 ### Create:
 Format:<br>
 curl -X POST -H "Content-Type: application/json" --data '{"name":"name", 
