@@ -73,7 +73,8 @@ cannot enjoy some of the services.<p>
 ### Search page:
 -Use the name or the postcode to search the request.<p>
 ### Details page:<br>
--View the request details and can post a message. Clicking on the symbol which shows on the map to display the message.<p>
+-View the request details and can post a message.<br> 
+-Clicking on the symbol which shows on the map to display the message.<p>
 ### Profile:
 -Display the request(s) that the user created.<br>
 -Delete and edit only exist when user created a request.<p>
